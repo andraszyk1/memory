@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  margin: auto;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dotted rgb(96 139 168);
+    width: 100vw;
+}
+.memory {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 1600px;
+  min-width: 500px;
+  gap: 5px;
+}
+
+.square {
+  cursor: pointer;
+  border: none;
+  height: 200px;
+  width: 200px;
+  font-size: 3rem;
+  font-weight: 700;
+  background-image: url("./assets/ask.PNG");
+  object-fit: fill;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: fill;
+
+}
+.new_game_btn {
+    margin: 2rem 0;
+  align-items: center;
+  border: none;
+  padding: 1rem 4rem;
+  background-color: coral;
+  outline: none;
+  cursor: pointer;
+  height: 6rem;
+  width: 30rem;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: bolder;
+  cursor: pointer;
+}
+.square.active {
+
+    border: 4px solid black;
+}
+.new_game_btn:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.win {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+  color: yellow;
+  padding: 10rem;
+  font-weight: bold;
+  font-size: 5rem;
+}
