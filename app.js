@@ -55,8 +55,8 @@ const addDataIndexToShow = (index1, index2) => {
             clearBoard();
             const win = document.createElement("p");
             win.classList.add("win");
-            win.textContent = "Wygrałeś";
-            containerDIV.appendChild(win);
+            win.textContent = "THE END";
+            memoryDIV.appendChild(win);
         }
     });
 };
