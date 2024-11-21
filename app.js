@@ -45,34 +45,27 @@ const addDataIndexToShow = (index1, index2) => {
     indexesToShow.push(index2);
     const allSquares = document.querySelectorAll(".square");
     allSquares.forEach((square) => {
-        if (square && indexesToShow.find((x) => x === square.getAttribute("data-index"))) {
+        if (square &&
+            indexesToShow.find((x) => x === square.getAttribute("data-index"))) {
             // square.textContent = square.getAttribute("data-value");
-            if (!square.hasChildNodes()) {
-                const newImg = document.createElement('img');
-                newImg.src = square.getAttribute("data-value");
-                square.appendChild(newImg);
-            }
             square.classList.add("active");
             square.setAttribute("disabled", "true");
         }
         if (indexesToShow.length === numberOfSquares) {
             clearBoard();
-            const win = document.createElement('p');
+            const win = document.createElement("p");
             win.classList.add("win");
             win.textContent = "Wygrałeś";
             containerDIV.appendChild(win);
         }
-        ;
     });
 };
 const getValueFromSquareDIV = (squareDIV) => {
     squareDIV.addEventListener("click", (event) => {
         // squareDIV.textContent = squareDIV.getAttribute("data-value");
-        const newImg = document.createElement('img');
-        newImg.src = squareDIV.getAttribute("data-value");
-        squareDIV.appendChild(newImg);
+        squareDIV.style.backgroundImage = `url(${squareDIV.getAttribute("data-value")})`;
         buffor.push(squareDIV);
-        squareDIV.setAttribute("disabled", 'true');
+        squareDIV.setAttribute("disabled", "true");
         if (buffor.length === 2 &&
             buffor[0].getAttribute("data-value") ===
                 buffor[1].getAttribute("data-value")) {
@@ -81,15 +74,17 @@ const getValueFromSquareDIV = (squareDIV) => {
         if (buffor.length === 2 &&
             buffor[0].getAttribute("data-value") !==
                 buffor[1].getAttribute("data-value")) {
-            buffor[1].setAttribute("disabled", 'true');
+            buffor[1].setAttribute("disabled", "true");
         }
         if (buffor.length > 2 &&
             buffor[0].getAttribute("data-value") !==
                 buffor[1].getAttribute("data-value")) {
             buffor[0].textContent = "";
             buffor[1].textContent = "";
-            buffor[0].removeAttribute('disabled');
-            buffor[1].removeAttribute('disabled');
+            buffor[0].removeAttribute("disabled");
+            buffor[1].removeAttribute("disabled");
+            buffor[0].style.backgroundImage = ` url("./assets/ask.PNG")`;
+            buffor[1].style.backgroundImage = ` url("./assets/ask.PNG")`;
         }
         if (buffor.length > 2) {
             buffor = buffor.slice(buffor.length - 1);

@@ -6,42 +6,36 @@ body {
   margin: auto;
 }
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 2px dotted rgb(96 139 168);
-    width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px dotted rgb(96 139 168);
+  width: 100vw;
 }
 .memory {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  max-width: 1600px;
-  min-width: 500px;
-  gap: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+ 
 }
 
 .square {
   cursor: pointer;
-  border: none;
+  border: 5px solid black;
   height: 200px;
   width: 200px;
-  font-size: 3rem;
   font-weight: 700;
   background-image: url("./assets/ask.PNG");
-  object-fit: fill;
+  background-position: center;
+  background-size: contain;
+ 
+
 }
-
-img {
-  height: 100%;
-  width: 100%;
-  object-fit: fill;
-
+.square.active {
+  border: 4px solid black;
 }
 .new_game_btn {
-    margin: 2rem 0;
+  margin: 2rem 0;
   align-items: center;
   border: none;
   padding: 1rem 4rem;
@@ -55,19 +49,46 @@ img {
   font-weight: bolder;
   cursor: pointer;
 }
-.square.active {
 
-    border: 4px solid black;
-}
 .new_game_btn:hover {
   background-color: rgba(0, 0, 0, 0.4);
 }
 .win {
-    display: flex;
-    flex-direction: column;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
   color: yellow;
   padding: 10rem;
   font-weight: bold;
   font-size: 5rem;
+}
+@media screen and (max-width: 700px) {
+  .square {
+    width: calc(100vw/4);
+    height:  calc(100vw/4);
+  }
+  .memory {
+ 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  
+    
+  }
+}
+@keyframes flip {
+  from {
+    rotate: -10deg;
+  }
+  to {
+    rotate: 0deg;
+  }
+}
+.square:hover{
+  animation-name: flip;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+}
+@keyframes keyframeWidth {
+  from {width: 150px;}
+  to {width: 200px;}
 }

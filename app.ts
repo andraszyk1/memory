@@ -1,12 +1,12 @@
-import {defaultRandomPattern,defaultRandomPattern2} from "./constans.js"
+import { defaultRandomPattern, defaultRandomPattern2 } from "./constans.js";
 console.log(defaultRandomPattern);
-let pattern=defaultRandomPattern2
+let pattern = defaultRandomPattern2;
 const memoryDIV = document.querySelector(".memory") as HTMLElement;
 const containerDIV = document.querySelector(".container") as HTMLElement;
 const newGameButton = document.querySelector(
   ".new_game_btn"
 ) as HTMLButtonElement;
-let buffor:any[] = [];
+let buffor: any[] = [];
 
 let numberOfSquares: number = pattern.length;
 let indexesToShow: string[] = [];
@@ -26,8 +26,8 @@ const createBoardSquare = (numberOfSquares: number) => {
 const clearBoard = () => {
   indexesToShow = [];
   buffor = [];
-  const winParagraf=document.querySelector(".win")
-winParagraf?.parentElement?.removeChild(winParagraf)
+  const winParagraf = document.querySelector(".win");
+  winParagraf?.parentElement?.removeChild(winParagraf);
   const squaresDIV = document.querySelectorAll(".square") as NodeList;
   squaresDIV.forEach((x) => {
     x.parentNode?.removeChild(x);
@@ -47,34 +47,32 @@ const addDataIndexToShow = (index1: string, index2: string) => {
   indexesToShow.push(index2);
   const allSquares = document.querySelectorAll(".square");
   allSquares.forEach((square) => {
-    if (square && indexesToShow.find((x) => x === square.getAttribute("data-index"))) {
+    if (
+      square &&
+      indexesToShow.find((x) => x === square.getAttribute("data-index"))
+    ) {
       // square.textContent = square.getAttribute("data-value");
-      if(!square.hasChildNodes()){
-      const newImg=document.createElement('img')
-      newImg.src=square.getAttribute("data-value")
-      square.appendChild(newImg)
-      }
       square.classList.add("active");
       square.setAttribute("disabled", "true");
     }
-    if(indexesToShow.length===numberOfSquares){
-      clearBoard()
-      const win=document.createElement('p')
-      win.classList.add("win")
-      win.textContent="Wygrałeś"
-      containerDIV.appendChild(win)
-    };
-    
+    if (indexesToShow.length === numberOfSquares) {
+      clearBoard();
+      const win = document.createElement("p");
+      win.classList.add("win");
+      win.textContent = "Wygrałeś";
+      containerDIV.appendChild(win);
+    }
   });
 };
 const getValueFromSquareDIV = (squareDIV: HTMLElement) => {
   squareDIV.addEventListener("click", (event: Event) => {
     // squareDIV.textContent = squareDIV.getAttribute("data-value");
-    const newImg=document.createElement('img') as HTMLImageElement
-      newImg.src=squareDIV.getAttribute("data-value") 
-      squareDIV.appendChild(newImg)
+ 
+    squareDIV.style.backgroundImage=`url(${squareDIV.getAttribute("data-value")})`;
+    
+   
     buffor.push(squareDIV);
-      squareDIV.setAttribute("disabled",'true')
+    squareDIV.setAttribute("disabled", "true");
     if (
       buffor.length === 2 &&
       buffor[0].getAttribute("data-value") ===
@@ -87,10 +85,10 @@ const getValueFromSquareDIV = (squareDIV: HTMLElement) => {
     }
     if (
       buffor.length === 2 &&
-      buffor[0].getAttribute("data-value")!==
+      buffor[0].getAttribute("data-value") !==
         buffor[1].getAttribute("data-value")
     ) {
-      buffor[1].setAttribute("disabled",'true')
+      buffor[1].setAttribute("disabled", "true");
     }
     if (
       buffor.length > 2 &&
@@ -99,11 +97,15 @@ const getValueFromSquareDIV = (squareDIV: HTMLElement) => {
     ) {
       buffor[0].textContent = "";
       buffor[1].textContent = "";
-      buffor[0].removeAttribute('disabled')
-      buffor[1].removeAttribute('disabled')
+      buffor[0].removeAttribute("disabled");
+      buffor[1].removeAttribute("disabled");
+      buffor[0].style.backgroundImage=` url("./assets/ask.PNG")`
+      buffor[1].style.backgroundImage=` url("./assets/ask.PNG")`
+    
     }
     if (buffor.length > 2) {
       buffor = buffor.slice(buffor.length - 1);
+
     }
   });
 };
